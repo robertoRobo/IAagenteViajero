@@ -39,18 +39,21 @@ namespace IA
                 }
                 distacias = raices(c);
                 distacias = MetodoBurbuja(c);
-                for (int x = 0; x < 100; x++)
+                if (distacias[0] < 100)
                 {
-                    for (int y = 0; y < 26; y++)
+                    for (int x = 0; x < 100; x++)
                     {
-                        Console.Write(c[x][y].nombre + "-");
+                        for (int y = 0; y < 26; y++)
+                        {
+                            Console.Write(c[x][y].nombre + "-");
+                        }
+                        nueva_generacion[x] = new List<ciudad>(c[x]);
+                        Console.Write("## " + distacias[x]);
+                        Console.WriteLine();
                     }
-                    nueva_generacion[x] = new List<ciudad>(c[x]);
-                    Console.Write("## " + distacias[x]);
-                    Console.WriteLine();
+                    generacionN(nueva_generacion, c);
+                    Console.ReadLine();
                 }
-                generacionN(nueva_generacion,c);
-                Console.ReadLine();
                 distacias = new double[100];
                 c = null;
                 nueva_generacion = null;
