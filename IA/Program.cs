@@ -89,10 +89,11 @@ namespace IA
                 nuevos[y+3] = CombinarPadres(ciudades[y], ciudades[y + 4], nuevos[y+3]);
                 imprimeHijos(ciudades[y], ciudades[y + 4], nuevos[y + 3]);
 
-                Console.WriteLine("");
+                
             }
             distaciasHijos = raices(nuevos);
             distaciasHijos = MetodoBurbuja(nuevos);
+            Console.WriteLine("Distancias Nuevos");
             for (int y = 0; y < 100;y++)
             {
                 for (int x = 0; x < 26; x++)
