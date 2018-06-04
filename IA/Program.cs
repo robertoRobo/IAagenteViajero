@@ -8,6 +8,7 @@ namespace IA
     {
         static List<ciudad> ciudadesBase;
         static double[] distacias = new double[100];
+        static double[] distaciasHijos = new double[100];
         static int[] posiciones = new int[26];
 
         static void Main(string[] args)
@@ -20,7 +21,7 @@ namespace IA
                 int i = 0;
                 List<ciudad>[] c = new List<ciudad>[100];
                 List<ciudad>[] nueva_generacion = new List<ciudad>[100];
-                double[] distacias = new double[100];
+                //double[] distacias = new double[100];
                 while (i < 100)
                 {
                     List<ciudad> v = vectoresRandom(ciudadesBase);
@@ -63,21 +64,39 @@ namespace IA
                 nuevos[y][24] = ciudades[y][24];
                 nuevos[y] = CombinarPadres(ciudades[y],ciudades[y+1],nuevos[y]);
                 imprimeHijos(ciudades[y], ciudades[y + 1], nuevos[y]);
+               
                 Console.WriteLine("");
+
                 nuevos[y+1][1] = ciudades[y][1];
                 nuevos[y+1][24] = ciudades[y][24];
                 nuevos[y+1] = CombinarPadres(ciudades[y], ciudades[y + 2], nuevos[y+1]);
                 imprimeHijos(ciudades[y], ciudades[y + 2], nuevos[y + 1]);
+
                 Console.WriteLine("");
+
                 nuevos[y+2][1] = ciudades[y][1];
                 nuevos[y+2][24] = ciudades[y][24];
                 nuevos[y+2] = CombinarPadres(ciudades[y], ciudades[y + 3], nuevos[y+2]);
                 imprimeHijos(ciudades[y], ciudades[y + 3], nuevos[y + 2]);
+
                 Console.WriteLine("");
+
                 nuevos[y+3][1] = ciudades[y][1];
                 nuevos[y+3][24] = ciudades[y][24];
                 nuevos[y+3] = CombinarPadres(ciudades[y], ciudades[y + 4], nuevos[y+3]);
                 imprimeHijos(ciudades[y], ciudades[y + 4], nuevos[y + 3]);
+
+                Console.WriteLine("");
+            }
+            distaciasHijos = raices(nuevos);
+            distaciasHijos = MetodoBurbuja(nuevos);
+            for (int y = 0; y < 100;y++)
+            {
+                for (int x = 0; x < 26; x++)
+                {
+                    Console.Write(nuevos[y][x].nombre + "-");
+                }
+                Console.Write("# "+distaciasHijos[y]);
                 Console.WriteLine("");
             }
             Console.WriteLine("");
